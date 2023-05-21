@@ -1,16 +1,14 @@
-package com.example.myproject.fragments
+package com.example.myproject.presentation.futuredaysfragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.R
-import com.example.myproject.adapters.DayInfo
-import com.example.myproject.adapters.WeatherAdapter
+import com.example.myproject.data.remote.models.DayInfo
+import com.example.myproject.presentation.adapters.WeatherAdapter
 import com.example.myproject.databinding.FragmentFutureDaysBinding
 
 

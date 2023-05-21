@@ -1,4 +1,4 @@
-package com.example.myproject.adapters
+package com.example.myproject.data.remote.models
 
 data class DayInfo(
     val cityName:String,

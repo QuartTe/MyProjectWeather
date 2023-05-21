@@ -1,4 +1,4 @@
-package com.example.myproject.adapters
+package com.example.myproject.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myproject.R
 import com.example.myproject.databinding.DayItemBinding
+import com.example.myproject.data.remote.models.DayInfo
 
 class WeatherAdapter : ListAdapter<DayInfo, WeatherAdapter.Holder>(Comparator()) {
 
