@@ -1,6 +1,5 @@
 package com.example.myproject.data
 
-import com.example.myproject.data.remote.models.DayInfo
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,9 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object WeatherApiFactory {
 
-    private val BASE_URL = "http://api.weatherapi.com/v1"
+    private val BASE_URL = "https://api.weatherapi.com/v1/"
 
-    val weathApi = createRetrofit().create(DayInfo::class.java)
+    val weathApi = createRetrofit().create(WeatherApi::class.java)
 
     private fun createRetrofit(): Retrofit {
         val interceptor = HttpLoggingInterceptor()

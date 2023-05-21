@@ -3,35 +3,37 @@ package com.example.myproject.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myproject.R
 import com.example.myproject.databinding.DayItemBinding
-import com.example.myproject.data.remote.models.DayInfo
+import com.example.myproject.data.response.Forecastday
 
-class WeatherAdapter : ListAdapter<DayInfo, WeatherAdapter.Holder>(Comparator()) {
+class WeatherAdapter : RecyclerView.Adapter<WeatherAdapter.Holder>(){
+
+    private var weatherWeek = ArrayList<Forecastday>()
 
     class Holder(view: View) : RecyclerView.ViewHolder(view){
         val binding = DayItemBinding.bind(view)
 
-        fun bind(item: DayInfo) = with(binding){
-            dateDayFr.text = item.time
-            skyStateFr.text = item.skyState
-            maxTempFr.text = item.maxTempC
-            minTempFr.text = item.minTempC
+        fun bind(item: Forecastday) = with(binding){
+            dateDayFr.text = item.date
+            skyStateFr.text = item.day.condition.text
+            maxTempFr.text = item.day.maxtempC.toString()
+            minTempFr.text = item.day.mintempC.toString()
+            Glide
+                .with(skyStateImageFr.context)
+                .load("https:" + item.day.condition.icon)
+                .fitCenter()
+                .into(skyStateImageFr)
         }
     }
 
-    class Comparator : DiffUtil.ItemCallback<DayInfo>(){
-        override fun areItemsTheSame(oldItem: DayInfo, newItem: DayInfo): Boolean {
-            return oldItem == newItem
-        }
 
-        override fun areContentsTheSame(oldItem: DayInfo, newItem: DayInfo): Boolean {
-            return oldItem == newItem
-        }
-
+    fun setWeather(weatherWeek:List<Forecastday>){
+        this.weatherWeek.clear()
+        this.weatherWeek = ArrayList(weatherWeek)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -39,7 +41,11 @@ class WeatherAdapter : ListAdapter<DayInfo, WeatherAdapter.Holder>(Comparator())
         return Holder(view)
     }
 
+    override fun getItemCount(): Int {
+        return weatherWeek.size
+    }
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(weatherWeek[position])
     }
 }

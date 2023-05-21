@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.myproject.presentation.firstfragment.FirstFragment"
+        android:name="com.example.myproject.presentation.first.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
@@ -17,7 +17,12 @@
 
     <fragment
         android:id="@+id/futureDaysFragment"
-        android:name="com.example.myproject.presentation.futuredaysfragment.FutureDaysFragment"
+        android:name="com.example.myproject.presentation.futuredays.FutureDaysFragment"
         android:label="fragment_future_days"
-        tools:layout="@layout/fragment_future_days" />
+        tools:layout="@layout/fragment_future_days" >
+        <argument
+            android:name="weekData"
+            app:argType="com.example.myproject.data.response.Forecast"
+            app:nullable="true" />
+    </fragment>
 </navigation>

@@ -1,13 +1,13 @@
-package com.example.myproject.presentation.futuredaysfragment
+package com.example.myproject.presentation.futuredays
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myproject.R
-import com.example.myproject.data.remote.models.DayInfo
 import com.example.myproject.presentation.adapters.WeatherAdapter
 import com.example.myproject.databinding.FragmentFutureDaysBinding
 
@@ -17,7 +17,7 @@ class FutureDaysFragment : Fragment(R.layout.fragment_future_days) {
 
     private lateinit var adapter: WeatherAdapter
 
-
+    private val args: FutureDaysFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,29 +37,10 @@ class FutureDaysFragment : Fragment(R.layout.fragment_future_days) {
         adapter = WeatherAdapter()
         rcView.adapter = adapter
 
-        val list = listOf(
-            DayInfo("", "", "10/04/2023",
-                "Murky", "", "",
-                "18°C", "25°C", "","","","","","",""),
+        val forecastWeek = args.weekData
+        val forecastList = forecastWeek!!.forecastday
 
-            DayInfo("", "", "11/04/2023",
-                "Sunny", "", "",
-                "21°C", "26°C", "","","","","","",""),
-
-            DayInfo("", "", "12/04/2023",
-                "Sunny", "", "",
-                "20°C", "30°C", "","","","","","",""),
-
-            DayInfo("", "", "14/04/2023",
-                "Rainy", "", "",
-                "17°C", "23°C", "","","","","","","")
-        )
-
-        adapter.submitList(list)
+        adapter.setWeather(forecastList)
     }
 
-   companion object {
-        @JvmStatic
-        fun newInstance() = FutureDaysFragment()
-   }
 }
